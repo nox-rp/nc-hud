@@ -185,6 +185,36 @@ nc-hud/
 This resource is licensed under the **GNU General Public License v3.0**.  
 See [LICENSE](LICENSE) for details.
 
+---
+
+## 🎨 Addon Theme — nc-theme-v1 ($20, Open Source)
+
+A premium custom theme addon for NC-HUD with unique speedometers for every vehicle class, per-category edit mode, and a dedicated settings panel.
+
+> **[🛒 Purchase on Tebex](https://noxcore.tebex.io/package/7286235)**
+
+### Vehicle-Class Speedometers
+
+| Vehicle | Cycle | Bike |
+|:-------:|:-----:|:----:|
+| ![Vehicle](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/vehicle.png) | ![Cycle](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/cycle.png) | ![Bike](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/bike.png) |
+
+| Helicopter / Plane | Boat |
+|:-------------------:|:----:|
+| ![Air](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/heli(air).png) | ![Boat](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/boat.png) |
+
+### Per-Category Edit Mode
+
+| Edit Mode | HUD | Car |
+|:---------:|:---:|:---:|
+| ![Edit Mode](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/editmode.png) | ![Edit HUD](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/editmode-hud.png) | ![Edit Car](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/editmode-car.png) |
+
+| Boat | Air | Bike |
+|:----:|:---:|:----:|
+| ![Edit Boat](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/editmode-boat.png) | ![Edit Air](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/editmode-air.png) | ![Edit Bike](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/editmode-bike.png) |
+
+---
+
 # Copyright
 
 Copyright © 2024 AfterLifeStudio https://github.com/AfterLifeStudio
