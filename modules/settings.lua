@@ -144,7 +144,12 @@ RegisterNUICallback('settings', function (data, cb)
     elseif data.option == 'minimapLeft' then
         StreamMinimap()
     elseif data.option == 'cinemtic' then
-        --Todo
+        SetCinematicMode(value)
+    elseif data.option == 'showminimap' then
+        DisplayRadar(value)
+        if value then
+            StreamMinimap()
+        end
     end
 
     PlaySoundFromEntity(-1, "BACK", cache.ped, "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0)

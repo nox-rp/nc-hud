@@ -323,7 +323,7 @@ const PlayerStats = () => {
         onMouseDown={statsCombined ? handleContainerMouseDown : undefined}
         style={{
           position: "fixed",
-          left: 235,
+          left: 245,
           bottom: 10,
           display: "flex",
           flexDirection: "column",

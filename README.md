@@ -1,7 +1,6 @@
 # NC-HUD
 
-A fully customizable, theme-based HUD resource for FiveM.  
-Built with **React** (UI) and **Lua** (client-side logic), designed for seamless integration with multiple frameworks.
+A fully customizable HUD for FiveM with React UI, cinematic mode, theme system, and multi-framework support.
 
 > Rework by **NOX** — [discord.gg/noxcore](https://discord.gg/noxcore)
 
@@ -9,25 +8,21 @@ Built with **React** (UI) and **Lua** (client-side logic), designed for seamless
 
 ## Preview
 
-| Light Theme | Dark Theme |
-|:-----------:|:----------:|
-| ![Light](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/light.png) | ![Dark](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/dark.png) |
+| Dark Mode (Square) | Dark Mode (Circle) |
+|:-------------------:|:-------------------:|
+| ![Dark Square](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/hud-dark.png) | ![Dark Circle](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/hud-dark-c.png) |
 
-| Combined Mode | Separate Stats/Info (Dark) |
-|:-------------:|:--------------------------:|
-| ![Combined](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/combined.png) | ![Separate Dark](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/separate-stats-info-dark.png) |
+| Light Mode (Square) | Light Mode (Circle) |
+|:--------------------:|:--------------------:|
+| ![Light Square](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/hud-light.png) | ![Light Circle](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/hud-light-c.png) |
 
-| Separate Combined | Separate Stats/Info (Light) |
-|:------------------:|:---------------------------:|
-| ![Separate Combined](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/separate-combined.png) | ![Separate Light](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/separate-stats-info-light.png) |
+| Edit Mode (Combined) | Edit Mode (Separate) |
+|:---------------------:|:--------------------:|
+| ![Edit Combined](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/hud-edit-c.png) | ![Edit Separate](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/hud-edit-s.png) |
 
-| Edit Mode (Combined) | Edit Mode (All Separate) |
-|:---------------------:|:------------------------:|
-| ![Edit Combined](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/editmode-combined.png) | ![Edit Separate](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/editmode-all-separate.png) |
-
-| Right Side (Circle) | Right Side (Square) |
-|:--------------------:|:-------------------:|
-| ![Right Circle](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/right-circle.png) | ![Right Square](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/right-square.png) |
+| Cinematic Mode |
+|:--------------:|
+| ![Cinematic](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/hud-cinematic.png) |
 
 | Settings - Options | Settings - Theme |
 |:------------------:|:----------------:|
@@ -45,51 +40,56 @@ Built with **React** (UI) and **Lua** (client-side logic), designed for seamless
 
 ### HUD Components
 - **Player Stats** — Health, Armor, Hunger, Thirst, Oxygen, Stress (icon-based SVG fill indicators)
-- **Player Info** — Server ID, In-game Time, Job, Cash & Bank balance
-- **Speedometer** — Speed (km/h / mph), RPM bar, Fuel gauge, Waypoint distance, Vehicle status bars (engine, body, fuel level)
-- **Vehicle Status Icons** — Seatbelt, Headlights, Turn Signals (L/R), Hazard Lights, Engine, Door Lock, Handbrake
-- **Minimap** — Circular minimap overlay with compass directions, tick marks, location bar (street name + postal code)
-- **Compass** — Directional heading with nearest postal code display
-- **Weapon HUD** — Current weapon name, ammo count (magazine / reserve), with auto-hide on holster
-- **Crosshair** — Custom crosshair overlay when aiming
-- **Heart Rate System** — Dynamic heart rate based on sprinting, driving speed, damage, and sudden deceleration
+- **Player Info** — Server ID, In-game Time, Job/Grade, Gang/Grade, Cash & Bank balance
+- **Speedometer** — Speed (km/h or mph), RPM gauge, Fuel level, Waypoint distance, Engine & Body health bars
+- **Vehicle Status** — Seatbelt, Headlights (off/on/high beam), Turn Signals (L/R), Hazard Lights, Engine, Door Lock, Handbrake
+- **Minimap** — Circle or Square minimap with compass directions, street name, and postal code
+- **Weapon HUD** — Weapon name, ammo count (clip/reserve), auto-hide on holster, custom crosshair when aiming
+- **Heart Rate** — Dynamic heart rate simulation (sprint, collision, damage, sudden deceleration)
 
-### Customization & Settings
-- **In-game Settings Panel** — Toggle individual HUD elements, adjust layout modes, select themes (keybind: `I`)
-- **Drag & Edit Mode** — Freely reposition all HUD components via drag-and-drop in edit mode
-- **Layout Modes** — `COMBINED` (Stats + Info grouped) or `SEPARATE` (each stat/info item individually positioned)
-- **Per-Server Positions** — Positions and settings saved per-server using KVP storage
+### Display Modes
+- **Dark / Light Theme** — Toggle between dark and light color schemes
+- **Circle / Square Minimap** — Switch minimap shape with automatic mask overlay
+- **Cinematic Mode** — Letterbox black bars + all HUD elements hidden + minimap off
+- **Minimap Toggle** — Show/hide minimap (hides both NUI overlay and GTA native radar)
+
+### Customization
+- **In-game Settings Panel** — Toggle HUD elements, themes, layout modes (keybind: `I`)
+- **Drag & Edit Mode** — Reposition all HUD components via drag-and-drop
+- **Layout Modes** — `COMBINED` (Stats/Info grouped) or `SEPARATE` (each item individually draggable)
+- **Per-Server Settings** — Positions and preferences saved per-server via KVP
 - **Configurable Keybinds** — Seatbelt, Turn Signals, Hazard Lights, HUD Settings (remappable in GTA settings)
 
-### Electric Vehicle Support
-- Automatic detection of electric vehicles based on `fPetrolTankVolume` threshold
-- Speed-based RPM simulation for single-gear electric vehicles
-- Configurable detection threshold
+### Vehicle Features
+- **Electric Vehicle Detection** — Auto-detect via `fPetrolTankVolume` with speed-based RPM simulation
+- **Seatbelt System** — Fly-through windscreen protection toggle
+- **Flight Data** — Heading, pitch, roll, landing gear, stall detection for helicopters and planes
 
 ### Stungun Ammo System
-- Custom ammo counter with recharge mechanic
-- Configurable max ammo and recharge time
+- Custom ammo counter with automatic recharge
+- Configurable max ammo and recharge cooldown
 - Notification on full recharge
 
 ### Theme System
-- **External Theme Support** — Register custom themes from separate resources via `exports['nc-hud']:RegisterTheme()`
-- **Component Override** — Themes can replace specific HUD components (Stats, Info, Speedometer, Minimap, Compass, Weapon)
-- **Custom CSS Injection** — Themes can provide custom CSS via URL
-- **Theme Settings** — Each theme can expose its own settings panel via callback
-- **Dynamic Load/Unload** — Themes register on resource start and unregister on stop
+- **External Themes** — Register custom themes from separate resources via `exports['nc-hud']:RegisterTheme()`
+- **Component Override** — Themes can selectively replace: Stats, Info, Speedometer, Minimap, Compass, Weapon, Crosshair
+- **Data Broadcasting** — Replaced components receive data via client events (`nc-hud:theme:*`)
+- **Dynamic Load/Unload** — Themes auto-register on resource start, unregister on stop
 
 ### Multi-Framework Support
-- **QBCore** (`qb-core`)
-- **QBox** (`qbx_core`)
-- **ESX** (`es_extended`)
-- **Ox Core** (`ox_core`)
-- **Standalone** (no framework)
+| Framework | Resource | Detection |
+|-----------|----------|:---------:|
+| QBCore | `qb-core` | Auto |
+| QBox | `qbx_core` | Auto |
+| ESX | `es_extended` | Auto |
+| Ox Core | `ox_core` | Auto |
+| Standalone | — | Fallback |
 
 ### Integrations
-- **Fuel Systems** — LegacyFuel, ox_fuel, ps-fuel, cdn-fuel, lj-fuel, okokGasStation, ti_fuel, myFuel, x-fuel, BigDaddy-Fuel, hyon_gas_station, or custom
-- **Voice Systems** — pma-voice, mumble-voip, saltychat, tokovoip, or custom
-- **Death Detection** — wasabi_ambulance, qb-ambulancejob, esx_ambulancejob, or custom
-- **Notifications** — ox_lib, QBCore, ESX, or custom
+- **Fuel** — LegacyFuel, ox_fuel, ps-fuel, cdn-fuel, lj-fuel, okokGasStation, ti_fuel, myFuel, x-fuel, BigDaddy-Fuel, hyon_gas_station, or custom function
+- **Voice** — pma-voice, mumble-voip, saltychat, tokovoip, or custom event
+- **Death Detection** — wasabi_ambulance, qb-ambulancejob, esx_ambulancejob, or custom function
+- **Notifications** — ox_lib, QBCore, ESX, or custom function
 
 ---
 

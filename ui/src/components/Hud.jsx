@@ -75,6 +75,7 @@ const useStyles = createStyles((theme) => ({
                
 const Hud = () => {
   const [visible, setVisible] = useState(true);
+  const [cinematic, setCinematic] = useState(false);
   const [isDraggingVehicle, setIsDraggingVehicle] = useState(false);
   const startPos = useRef({ x: 0, y: 0 });
   const { classes } = useStyles();
@@ -87,6 +88,10 @@ const Hud = () => {
     setVisible(data);
   }
   NuiEvent("visible", handlevisible);
+  
+  NuiEvent("cinematic", (data) => {
+    setCinematic(data);
+  });
 
   // Vehicle drag handler
   const handleVehicleMouseDown = useCallback((e) => {
@@ -152,16 +157,16 @@ const Hud = () => {
       
       <Fade in={visible}>
         {/* PlayerInfo - top center */}
-        {!isComponentHidden('playerInfo') && <PlayerInfo />}
+        {!isComponentHidden('playerInfo') && !cinematic && <PlayerInfo />}
         
         {/* Minimap - manages its own position */}
-        {!isComponentHidden('minimap') && !isComponentHidden('compass') && <Minimap />}
+        {!isComponentHidden('minimap') && !isComponentHidden('compass') && !cinematic && <Minimap />}
         
         {/* PlayerStats - vertical boxes next to minimap */}
-        {!isComponentHidden('playerStats') && <PlayerStats />}
+        {!isComponentHidden('playerStats') && !cinematic && <PlayerStats />}
         
         {/* Speedometer - draggable in edit mode */}
-        {!isComponentHidden('speedometer') && (
+        {!isComponentHidden('speedometer') && !cinematic && (
         <div 
           className={`${classes.vehicle} nox-speedometer-container`}
           onMouseDown={handleVehicleMouseDown}
@@ -178,7 +183,7 @@ const Hud = () => {
         )}
         
         {/* Weapon HUD - bottom left */}
-        {!isComponentHidden('weaponHud') && <WeaponHUD />}
+        {!isComponentHidden('weaponHud') && !cinematic && <WeaponHUD />}
       </Fade>
     </>
   );

@@ -19,6 +19,49 @@ DisplayHud = function (state)
    DisplayRadar(state)
 end
 
+-- Cinematic Mode
+local cinematicActive = false
+local cinematicBarHeight = 0.0
+local CINEMATIC_BAR_TARGET = 0.12
+local CINEMATIC_SPEED = 0.005
+
+---@param state boolean
+SetCinematicMode = function(state)
+    cinematicActive = state
+    if state then
+        DisplayRadar(false)
+        NuiMessage('cinematic', true)
+    else
+        if GlobalSettings.showhud and GlobalSettings.showminimap then
+            DisplayRadar(true)
+            StreamMinimap()
+        end
+        NuiMessage('cinematic', false)
+    end
+end
+
+CreateThread(function()
+    while true do
+        if cinematicActive then
+            if cinematicBarHeight < CINEMATIC_BAR_TARGET then
+                cinematicBarHeight = math.min(cinematicBarHeight + CINEMATIC_SPEED, CINEMATIC_BAR_TARGET)
+            end
+            DrawRect(0.5, cinematicBarHeight / 2, 1.0, cinematicBarHeight, 0, 0, 0, 255)
+            DrawRect(0.5, 1.0 - cinematicBarHeight / 2, 1.0, cinematicBarHeight, 0, 0, 0, 255)
+            Wait(0)
+        else
+            if cinematicBarHeight > 0.0 then
+                cinematicBarHeight = math.max(cinematicBarHeight - CINEMATIC_SPEED, 0.0)
+                DrawRect(0.5, cinematicBarHeight / 2, 1.0, cinematicBarHeight, 0, 0, 0, 255)
+                DrawRect(0.5, 1.0 - cinematicBarHeight / 2, 1.0, cinematicBarHeight, 0, 0, 0, 255)
+                Wait(0)
+            else
+                Wait(500)
+            end
+        end
+    end
+end)
+
 CreateThread(function()
     while true do
         if GlobalSettings.showhud then
