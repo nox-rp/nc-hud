@@ -33,6 +33,12 @@ Built with **React** (UI) and **Lua** (client-side logic), designed for seamless
 |:------------------:|:----------------:|
 | ![Options](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/options.png) | ![Theme](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/theme.png) |
 
+### Component Preview
+
+| Player Stats | Player Info | Speedometer |
+|:------------:|:-----------:|:-----------:|
+| ![Player Stats](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/state.png) | ![Player Info](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/info.png) | ![Speedometer](https://r2.fivemanage.com/AGIqkS85vq6NpkHypOknK/speedmeter.png) |
+
 ---
 
 ## Features

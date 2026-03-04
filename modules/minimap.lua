@@ -303,7 +303,9 @@ end
 
 CreateThread(function()
     while true do
-        if MinimapDebug and MinimapPosition.w > 0 then
+        if not MinimapDebug then
+            Wait(500)
+        elseif MinimapPosition.w > 0 then
             local safezone = GetSafeZoneSize()
             local aspectRatio = GetAspectRatio(false)
             

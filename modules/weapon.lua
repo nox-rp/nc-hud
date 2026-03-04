@@ -166,25 +166,24 @@ local function GetWeaponLabel(weaponHash)
     return WeaponLabels['default']
 end
 
+local stungunHash = GetHashKey("WEAPON_STUNGUN")
+local stungunMPHash = GetHashKey("WEAPON_STUNGUN_MP")
+
 local function StartWeaponThread()
-    CreateThread(function()
-        while PlayerLoaded do
-            HideHudComponentThisFrame(2)
-            DisplayAmmoThisFrame(false)
-            Wait(0)
-        end
-    end)
-    
-    -- Stungun per-frame control thread
+    -- Stungun per-frame control (only runs when holding stungun)
     if stungunConfig.enabled ~= false then
     CreateThread(function()
         local lastShotTime = 0
+        local unarmedHash = GetHashKey("WEAPON_UNARMED")
         
         while PlayerLoaded do
             local ped = cache.ped
             local weaponHash = GetSelectedPedWeapon(ped)
             
-            if weaponHash == GetHashKey("WEAPON_STUNGUN") or weaponHash == GetHashKey("WEAPON_STUNGUN_MP") then
+            -- Only run per-frame when holding stungun
+            if weaponHash == stungunHash or weaponHash == stungunMPHash then
+                DisplayAmmoThisFrame(false)
+                
                 if stungunAmmo > 0 then
                     SetAmmoInClip(ped, weaponHash, 1)
                 else
@@ -202,13 +201,22 @@ local function StartWeaponThread()
                     stungunLastFireTime = currentTime
                     lastShotTime = currentTime
                 end
+                
+                Wait(0)
+            elseif weaponHash ~= unarmedHash then
+                -- Has weapon but not stungun: hide default ammo display
+                DisplayAmmoThisFrame(false)
+                Wait(0)
+            else
+                -- Unarmed: sleep longer
+                Wait(500)
             end
-            
-            Wait(0)
         end
     end)
+    end -- stungun enabled end
     
     -- Stungun auto-recharge thread
+    if stungunConfig.enabled ~= false then
     CreateThread(function()
         while PlayerLoaded do
             Wait(1000)

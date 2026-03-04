@@ -24,14 +24,12 @@ const useStyles = createStyles(() => ({
     border: "1px solid rgba(255, 255, 255, 0.08)",
     borderRadius: "8px",
     boxSizing: "border-box",
-    boxShadow: "0 8px 24px rgba(0, 0, 0, 0.65)",
     zIndex: -1,
   },
   holeBorder: {
     position: "absolute",
     border: "1px solid rgba(255, 255, 255, 0.08)",
     borderRadius: "6px",
-    boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.45)",
     pointerEvents: "none",
     zIndex: 0,
   },
@@ -365,9 +363,6 @@ const Minimap = () => {
                   : 'linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(240, 242, 245, 0.92) 100%)',
                 color: theme.text,
                 border: `1px solid ${theme.border}`,
-                boxShadow: isDark 
-                  ? '0 4px 12px rgba(0, 0, 0, 0.5)'
-                  : '0 4px 12px rgba(0, 0, 0, 0.15)',
               }}
             >
               {locationText}

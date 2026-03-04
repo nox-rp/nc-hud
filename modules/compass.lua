@@ -46,9 +46,19 @@ CreateThread(function()
     end
 end)
 
--- Find nearest postal
+-- Find nearest postal (with caching)
+local cachedPostalCode = nil
+local lastPostalUpdate = 0
+local POSTAL_CACHE_MS = 3000
+
 local function GetNearestPostal(playerCoords)
     if not postals or #postals == 0 then return nil end
+    
+    local now = GetGameTimer()
+    if now - lastPostalUpdate < POSTAL_CACHE_MS and cachedPostalCode then
+        return cachedPostalCode
+    end
+    lastPostalUpdate = now
     
     local nearestCode = nil
     local nearestDist = math.huge
@@ -62,6 +72,7 @@ local function GetNearestPostal(playerCoords)
         end
     end
     
+    cachedPostalCode = nearestCode
     return nearestCode
 end
 
@@ -171,6 +182,6 @@ CreateThread(function()
         
         BroadcastCompass(compassData)
         
-        Wait(50)
+        Wait(200)
     end
 end)

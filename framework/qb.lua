@@ -10,6 +10,13 @@ local function UpdatePlayerInfo(playerdata)
     -- Job
     if playerdata.job then
         PlayerInfo.job = playerdata.job.label or 'Unemployed'
+        PlayerInfo.jobGrade = playerdata.job.grade and playerdata.job.grade.name or ''
+    end
+    
+    -- Gang
+    if playerdata.gang then
+        PlayerInfo.gang = playerdata.gang.label or ''
+        PlayerInfo.gangGrade = playerdata.gang.grade and playerdata.gang.grade.name or ''
     end
     
     -- Cash & Bank
@@ -77,4 +84,11 @@ end)
 -- Job update
 RegisterNetEvent('QBCore:Client:OnJobUpdate', function(job)
     PlayerInfo.job = job.label or 'Unemployed'
+    PlayerInfo.jobGrade = job.grade and job.grade.name or ''
+end)
+
+-- Gang update
+RegisterNetEvent('QBCore:Client:OnGangUpdate', function(gang)
+    PlayerInfo.gang = gang.label or ''
+    PlayerInfo.gangGrade = gang.grade and gang.grade.name or ''
 end)

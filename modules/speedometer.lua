@@ -115,6 +115,15 @@ AddEventHandler('onResourceStart', function(resourceName)
     end
 end)
 
+-- Dirty checking: track last sent values to avoid redundant NUI messages
+local lastSent = {}
+local function hasChanged(data)
+    for k, v in pairs(data) do
+        if lastSent[k] ~= v then return true end
+    end
+    return false
+end
+
 CreateThread(function()
     while true do
         local sleep = 1000
@@ -122,8 +131,8 @@ CreateThread(function()
         local showspeedometer = GlobalSettings.showspeedometer == true and incar or false
 
         if incar then
-            sleep = 50
-            local speed = math.ceil(GetEntitySpeed(vehicle) * (GlobalSettings.speedunitmph and 2.2 or 3.6))
+            sleep = 100
+            local speed = math.ceil(GetEntitySpeed(vehicle) * (GlobalSettings.speedunitmph and 2.23694 or 3.6))
             local fuel = GetFuel(vehicle)
             local rpm = GetVehicleCurrentRpm(vehicle)
             local gear = GetVehicleCurrentGear(vehicle)
@@ -263,11 +272,13 @@ CreateThread(function()
                 isStalling = isStalling
             }
             
-            if not IsComponentOverridden('speedometer') then
-                NuiMessage('speedometer', data)
+            if hasChanged(data) then
+                for k, v in pairs(data) do lastSent[k] = v end
+                if not IsComponentOverridden('speedometer') then
+                    NuiMessage('speedometer', data)
+                end
+                BroadcastVehicle(data)
             end
-            
-            BroadcastVehicle(data)
         else
 
             indicatorLeft = false

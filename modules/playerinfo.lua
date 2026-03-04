@@ -1,6 +1,9 @@
 ---@class PlayerInfo
 PlayerInfo = {
     job = 'Unemployed',
+    jobGrade = '',
+    gang = '',
+    gangGrade = '',
     cash = 0,
     bank = 0,
 }
@@ -24,9 +27,15 @@ CreateThread(function()
             show = GlobalSettings.showplayerinfo,
             serverId = serverId,
             time = time,
+            serverName = Config.ServerName or 'NOX CORE',
             job = PlayerInfo.job,
+            jobGrade = PlayerInfo.jobGrade,
+            gang = PlayerInfo.gang,
+            gangGrade = PlayerInfo.gangGrade,
             cash = PlayerInfo.cash,
             bank = PlayerInfo.bank,
+            playerCount = #GetActivePlayers(),
+            maxPlayers = Config.MaxPlayers or 48,
         }
         
         if not IsComponentOverridden('playerInfo') then

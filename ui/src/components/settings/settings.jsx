@@ -210,7 +210,7 @@ const styles = createStyles((theme) => ({
 const Settings = () => {
   const { classes } = styles();
   const { isDark, setTheme, theme, registeredThemes, currentThemeId, selectExternalTheme, requestThemeList } = useTheme();
-  const { enterEditMode, statInfoCombined, setStatInfoCombined, statsCombined, setStatsCombined, infoCombined, setInfoCombined, resetPositions } = useHudPosition();
+  const { enterEditMode, statsCombined, setStatsCombined, infoCombined, setInfoCombined, resetPositions } = useHudPosition();
   const [visible, setVisible] = useState(false)
   const [activeTab, setActiveTab] = useState("options") // "options" | "theme"
   const [settings, setSettings] = useState({
@@ -238,9 +238,6 @@ const Settings = () => {
     requestThemeList()
     if (typeof data.darkmode !== 'undefined') {
       setTheme(data.darkmode);
-    }
-    if (typeof data.statInfoCombined !== 'undefined') {
-      setStatInfoCombined(data.statInfoCombined);
     }
     if (typeof data.statsCombined !== 'undefined') {
       setStatsCombined(data.statsCombined);
@@ -494,15 +491,6 @@ const Settings = () => {
                   </div>
                   <div className={classes.categoryOptions}>
                     <Option
-                      title="Stats/Info"
-                      value={statInfoCombined}
-                      option1="COMBINED"
-                      option2="SEPARATE"
-                      option="statInfoCombined"
-                      onLocalChange={(val) => setStatInfoCombined(val)}
-                      compact={true}
-                    />
-                    <Option
                       title="Stats Group"
                       value={statsCombined}
                       option1="COMBINED"
@@ -510,7 +498,6 @@ const Settings = () => {
                       option="statsCombined"
                       onLocalChange={(val) => setStatsCombined(val)}
                       compact={true}
-                      disabled={statInfoCombined}
                     />
                     <Option
                       title="Info Group"
@@ -520,7 +507,6 @@ const Settings = () => {
                       option="infoCombined"
                       onLocalChange={(val) => setInfoCombined(val)}
                       compact={true}
-                      disabled={statInfoCombined}
                     />
                     <Option
                       title="Edit Mode"

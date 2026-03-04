@@ -5,7 +5,6 @@ const BUILTIN_DEFAULT_POSITIONS = {
   playerStats: null,
   playerInfo: null,
   speedometer: null,
-  combined: null,
   // SEPARATE mode individual items
   stats_health: null,
   stats_armor: null,
@@ -41,7 +40,6 @@ const savePositions = (positions) => {
 
 const HudPositionProvider = ({ children }) => {
   const [editMode, setEditMode] = useState(false);
-  const [statInfoCombined, setStatInfoCombined] = useState(true);
   const [statsCombined, setStatsCombined] = useState(true);
   const [infoCombined, setInfoCombined] = useState(true);
   const [positions, setPositions] = useState(BUILTIN_DEFAULT_POSITIONS);
@@ -63,9 +61,6 @@ const HudPositionProvider = ({ children }) => {
         if (data?.option === "editMode") {
           setEditMode(Boolean(data.input));
         }
-        if (data?.option === "statInfoCombined") {
-          setStatInfoCombined(Boolean(data.input));
-        }
         if (data?.option === "statsCombined") {
           setStatsCombined(Boolean(data.input));
         }
@@ -75,9 +70,6 @@ const HudPositionProvider = ({ children }) => {
         
         // When it's a full settings object (when pressing keybind 'i')
         if (data && !data.option) {
-          if (typeof data.statInfoCombined !== 'undefined') {
-            setStatInfoCombined(Boolean(data.statInfoCombined));
-          }
           if (typeof data.statsCombined !== 'undefined') {
             setStatsCombined(Boolean(data.statsCombined));
           }
@@ -104,9 +96,6 @@ const HudPositionProvider = ({ children }) => {
       } else if (action === "loadSettings") {
         // Apply options when settings are loaded
         if (data && typeof data === "object") {
-          if (typeof data.statInfoCombined !== 'undefined') {
-            setStatInfoCombined(Boolean(data.statInfoCombined));
-          }
           if (typeof data.statsCombined !== 'undefined') {
             setStatsCombined(Boolean(data.statsCombined));
           }
@@ -190,8 +179,6 @@ const HudPositionProvider = ({ children }) => {
       value={{ 
         editMode, 
         setEditMode, 
-        statInfoCombined,
-        setStatInfoCombined,
         statsCombined,
         setStatsCombined,
         infoCombined,
@@ -219,8 +206,6 @@ export const useHudPosition = () => {
     return {
       editMode: false,
       setEditMode: () => {},
-      statInfoCombined: true,
-      setStatInfoCombined: () => {},
       statsCombined: true,
       setStatsCombined: () => {},
       infoCombined: true,

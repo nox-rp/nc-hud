@@ -23,7 +23,6 @@ const useStyles = createStyles((theme) => ({
     background: 'transparent',
     border: 'none',
     borderRadius: 0,
-    boxShadow: 'none',
   },
   
   ammoNumbers: {
@@ -73,12 +72,10 @@ const useStyles = createStyles((theme) => ({
   
   bulletLow: {
     backgroundColor: "#FF6B6B",
-    boxShadow: "0 0 4px rgba(255, 107, 107, 0.5)",
   },
   
   bulletCritical: {
     backgroundColor: "#FF3333",
-    boxShadow: "0 0 5px rgba(255, 51, 51, 0.7)",
     animation: `${bulletPulse} 1s infinite`,
   },
   

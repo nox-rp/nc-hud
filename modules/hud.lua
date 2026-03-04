@@ -9,6 +9,8 @@ CreateThread(function()
     for i = 1,#hidehudcomponents do
         SetHudComponentSize(hidehudcomponents[i], 0, 0)
     end
+    -- Hide weapon icon & ammo permanently (removes need for per-frame HideHudComponentThisFrame)
+    SetHudComponentSize(2, 0, 0)
 end)
 
 ---@param state boolean;
