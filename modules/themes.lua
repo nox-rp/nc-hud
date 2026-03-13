@@ -129,6 +129,10 @@ function SendHiddenComponentsToNui()
             hidden[component] = true
         end
     end
+
+    if Config.ShowCrosshair == false then
+        hidden['crosshair'] = true
+    end
     
     NuiMessage('themeOverrides', {
         hiddenComponents = hidden,
@@ -382,6 +386,10 @@ RegisterNUICallback('getThemeList', function(data, cb)
         if themeId then
             hidden[component] = true
         end
+    end
+
+    if Config.ShowCrosshair == false then
+        hidden['crosshair'] = true
     end
     
     cb({

@@ -86,6 +86,10 @@ Config.Keybinds = {
 -- 11=AREA_NAME, 12=VEHICLE_CLASS, 13=STREET_NAME
 Config.HideHudComponents = { 6, 7, 8, 9 }
 
+-- Custom Crosshair (nc-hud built-in crosshair)
+-- true = show crosshair, false = hide crosshair
+Config.ShowCrosshair = false
+
 -- Server Info (displayed on HUD)
 Config.ServerName = 'NOX CORE'  -- Server name shown in the info panel
 Config.MaxPlayers = 48          -- Max player count shown in info panel
